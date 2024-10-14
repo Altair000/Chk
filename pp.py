@@ -199,5 +199,14 @@ def proxy_check(message):
             print(f"Error al cargar proxies: {str(e)}")  # Imprimir en el log
     else:
         bot.send_message(user_id, "🚫 No tienes permiso para usar este comando.")
+        
+@bot.message_handler(commands=['chk'])
+def handle_chk(message):
+    if user_id in admin or user_id in coop:
+        card_list = message.text.split()[1:]  # Tarjetas enviadas
+        proxies = cargar_proxies('proxies.txt')  # Cargar proxies del archivo
+        chk(card_list, proxies)
+    else:
+        bot.send_message(user_id, "🚫 No tienes permiso para usar este comando.")
 
 bot.polling()

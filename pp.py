@@ -167,17 +167,16 @@ def iniciar(message):
     global user_id
     bot.reply_to(message, "👋 ¡Hola! Raydiel.")
     user_id = str(message.from_user.id)
-
+        
+# Recepción del archivo de proxies
+@bot.message_handler(content_types=['document'])
+def handle_proxies_file(message):
     if user_id in admin or user_id in coop:
-        # Recepción del archivo de proxies
-        @bot.message_handler(content_types=['document'])
-        def handle_proxies_file(message):
-            file_info = bot.get_file(message.document.file_id)
-            downloaded_file = bot.download_file(file_info.file_path)
-            with open('proxies.txt', 'wb') as f:
-                f.write(downloaded_file)
+        file_info = bot.get_file(message.document.file_id)
+        downloaded_file = bot.download_file(file_info.file_path)
+        with open('proxies.txt', 'wb') as f:
+            f.write(downloaded_file)
             bot.reply_to(message, "✅ Archivo de proxies guardado correctamente.")
-            
     else:
         bot.send_message(user_id, "🚫 No tienes permiso para usar este bot.")
         bot.send_message(user_id, f"🔒 Tu usuario es: {user_id} no coincide con mi base de datos. Te jodiste.")

@@ -138,10 +138,10 @@ def chk(card_list, proxies):
                     bot.send_message(user_id, f"⚠️ La tarjeta **{ccn}** falló con el código de estado {req.status_code}.")
                     break  # Salir del ciclo si no está bien
 
-            except requests.exceptions.ProxyError:
+            except rq.exceptions.ProxyError:
                 bot.send_message(user_id, f"⚠️ Proxy {proxy} falló. Intentando con el siguiente.")
                 proxy_fails += 1  # Contar el fallo del proxy
-            except requests.exceptions.RequestException as e:
+            except rq.exceptions.RequestException as e:
                 bot.send_message(user_id, f"⚠️ Error con la tarjeta **{ccn}**: {str(e)}")
                 proxy_fails += 1  # Contar el fallo del proxy
 

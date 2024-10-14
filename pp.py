@@ -21,9 +21,19 @@ def generar_identidad():
 
 # Función para cargar proxies desde el archivo enviado por el usuario
 def cargar_proxies(archivo):
+    proxies = []
     with open(archivo, 'r') as f:
-        proxies = f.readlines()
-    return [proxy.strip() for proxy in proxies]
+        for linea in f:
+            partes = linea.strip().split(':')
+            if len(partes) == 4:  # Asegúrate de que el proxy tiene el formato correcto
+                ip = partes[0]
+                puerto = partes[1]
+                usuario = partes[2]
+                contraseña = partes[3]
+                proxies.append(f'http://{usuario}:{contraseña}@{ip}:{puerto}')
+            else:
+                print(f"Formato de proxy incorrecto: {linea.strip()}")
+    return proxies
 
 # Función para mostrar la barra de progreso
 def actualizar_progreso(index, total, mensaje_adicional=""):
@@ -176,8 +186,7 @@ def iniciar(message):
             chk(card_list, proxies)
     else:
         bot.send_message(user_id, "🚫 No tienes permiso para usar este bot.")
-        bot.send_message(user_id, f"🔒 Tu usuario es: {user_id} no coincide con mi base de datos. Te jodiste papasito")
+        bot.send_message(user_id, f"🔒 Tu usuario es: {user_id} no coincide con mi base de datos. Te jodiste.")
 
 if __name__ == "__main__":
-    # Iniciar el bot
     bot.polling()

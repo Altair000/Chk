@@ -34,6 +34,7 @@ def cargar_proxies(archivo):
             else:
                 print(f"Formato de proxy incorrecto: {linea.strip()}")
     return proxies
+cargar_proxies(archivo)
 
 # Función para mostrar la barra de progreso
 def actualizar_progreso(index, total, mensaje_adicional=""):

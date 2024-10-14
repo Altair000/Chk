@@ -186,10 +186,12 @@ def iniciar(message):
             chk(card_list, proxies)
         @bot.message_handler(commands=['proxy'])
         def proxy_check(message):
-            with open(archivo, 'r') as f:
-                f.read.splitline
-            cargar_proxies(archivo)
-            bot.send_message(user_id, proxies)
+            proxies = cargar_proxies('proxies.txt')
+            if proxies:
+                bot.send_message(user_id, f"Proxies cargados:\n" + "\n".join(proxies))
+            else:
+                bot.send_message(user_id, "🚫 No se encontraron proxies válidos.")
+
     else:
         bot.send_message(user_id, "🚫 No tienes permiso para usar este bot.")
         bot.send_message(user_id, f"🔒 Tu usuario es: {user_id} no coincide con mi base de datos. Te jodiste.")

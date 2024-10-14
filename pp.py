@@ -30,7 +30,7 @@ def cargar_proxies(archivo):
                 puerto = partes[1]
                 usuario = partes[2]
                 contraseña = partes[3]
-                proxies.append(f'http://{usuario}:{contraseña}@{ip}:{puerto}')
+                proxies.append(f'https://{usuario}:{contraseña}@{ip}:{puerto}')
             else:
                 print(f"Formato de proxy incorrecto: {linea.strip()}")
     return proxies

@@ -184,20 +184,11 @@ def iniciar(message):
 
 @bot.message_handler(commands=['proxy'])
 def proxy_check(message):
+    global proxies
     if user_id in admin or user_id in coop:
-        try:
-            # Cargar proxies desde el archivo
-            proxies = cargar_proxies('proxies.txt')
-            
-            # Comprobar si se cargaron proxies
-            if proxies:
-                proxy_list = "\n".join(proxies)
-                bot.send_message(user_id, f"Proxies cargados:\n{proxy_list}")
-            else:
-                bot.send_message(user_id, "🚫 No se encontraron proxies válidos.")
-        except Exception as e:
-            bot.send_message(user_id, f"🚫 Ocurrió un error al cargar los proxies: {str(e)}")
-            print(f"Error al cargar proxies: {str(e)}")  # Imprimir en el log
+        proxy_list = "\n".join(proxies)
+        bot.send_message(user_id, f"Proxies cargados:\n{proxy_list}")
+    
     else:
         bot.send_message(user_id, "🚫 No tienes permiso para usar este comando.")
 

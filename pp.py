@@ -188,5 +188,4 @@ def iniciar(message):
         bot.send_message(user_id, "🚫 No tienes permiso para usar este bot.")
         bot.send_message(user_id, f"🔒 Tu usuario es: {user_id} no coincide con mi base de datos. Te jodiste.")
 
-if __name__ == "__main__":
-    bot.polling()
+bot.polling()

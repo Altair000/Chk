@@ -1,5 +1,4 @@
 pyzstd
-time
 pytelegrambotapi
 names
 bs4

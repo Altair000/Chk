@@ -214,4 +214,4 @@ def handle_chk(message):
     else:
         bot.send_message(user_id, "🚫 No tienes permiso para usar este comando.")
 
-bot.polling()
+bot.infinity_polling()

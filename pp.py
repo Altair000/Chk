@@ -31,6 +31,11 @@ def cargar_proxies(archivo):
                 usuario = partes[2]
                 contraseña = partes[3]
                 proxies.append(f'https://{usuario}:{contraseña}@{ip}:{puerto}')
+            elif len(partes) == 2:  # Proxy sin autenticación (IP:PUERTO)
+                ip = partes[0]
+                puerto = partes[1]
+                proxies.append(f'https://{ip}:{puerto}')
+            
             else:
                 print(f"Formato de proxy incorrecto: {linea.strip()}")
     return proxies

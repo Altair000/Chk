@@ -9,7 +9,7 @@ TOKEN = '7769031030:AAGreeowh7Z62pkpm1KIyRHe7_qjWHNkFHw'
 bot = telebot.TeleBot(TOKEN)
 user_id = None
 admin = '1519654469'
-coop = ''
+coop = '6490522484'
 
 # Generador de identidad aleatoria
 def generar_identidad():
